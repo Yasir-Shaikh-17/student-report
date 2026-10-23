@@ -1,0 +1,74 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Report an Issue</title>
+  <link rel="stylesheet" href="report.css">
+</head>
+<body>
+
+  <main class="report-container">
+    <header class="form-header">
+      <span class="form-tag">STUDENT SUPPORT</span>
+      <h1>Report an Issue</h1>
+      <p>Found something that needs attention? Let us know.</p>
+    </header>
+
+    <form id="report-form">
+
+      <div class="form-group">
+        <label for="title">Issue Title</label>
+        <input
+          type="text"
+          id="title"
+          name="title"
+          placeholder="e.g. Broken classroom fan"
+          maxlength="100"
+        >
+      </div>
+
+      <div class="form-group">
+        <label for="category">Issue Category</label>
+        <select id="category" name="category">
+          <option value="" disabled selected>
+            Select a category
+          </option>
+          <option value="Maintenance">Maintenance</option>
+          <option value="Cleanliness">Cleanliness</option>
+          <option value="Equipment">Equipment</option>
+          <option value="Electricity">Electricity</option>
+          <option value="Internet">Internet</option>
+          <option value="Other">Other</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="description">Issue Description</label>
+        <textarea
+          id="description"
+          name="description"
+          placeholder="Describe the issue and where you noticed it..."
+          rows="5"
+        ></textarea>
+        <span class="field-hint">
+          Please provide enough details to help us resolve the issue.
+        </span>
+      </div>
+
+      <button type="submit" class="submit-btn">
+        Submit Report <span aria-hidden="true">&rarr;</span>
+      </button>
+
+      <p class="form-footer">
+        Your report will be submitted for review.
+      </p>
+
+    </form>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="./report.js"></script>
+</body>
+</html>
