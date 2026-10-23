@@ -8,6 +8,7 @@ const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 // ================== VARIABLE DECLERATIONS ==================
 const profileName = document.querySelector("#profile-name");
 const logoutBtn = document.querySelector("#logout-btn");
+const username = document.querySelector("#user-name")
 
 // ================= CHECK IF THE USER IS LOGGEDIN OR NOT =================
 const checkUser = async () => {
@@ -16,8 +17,8 @@ const checkUser = async () => {
     window.location.href = "../login/login.html";
   }
 
-  console.log(data);
-  profileName.innerHTML = data.user.user_metadata.name;
+  let name = data.user.user_metadata.name
+  username.innerHTML = `Hello, ${name} <span>👋</span>`;
 };
 checkUser();
 

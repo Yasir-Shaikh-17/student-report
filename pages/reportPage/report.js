@@ -10,22 +10,20 @@ const form = document.querySelector("#report-form");
 let title = document.querySelector("#title");
 let category = document.querySelector("#category");
 let description = document.querySelector("#description");
-let submitBtn = document.querySelector(".submit-btn")
+let submitBtn = document.querySelector(".submit-btn");
 let loading = false;
 
 // ================= CHECK IF THE USER IS LOGGEDIN OR NOT =================
-const checkUser = async()=>{
-
-  const {data} = await supabaseClient.auth.getUser()
-  if(!data.user){
-    window.location.href = "../login/login.html"
+const checkUser = async () => {
+  const { data } = await supabaseClient.auth.getUser();
+  if (!data.user) {
+    window.location.href = "../login/login.html";
   }
-
-}
+};
 checkUser();
 
 // ================== FORM SUBMITTION ==================
-form.addEventListener("submit", async(e) => {
+form.addEventListener("submit", async (e) => {
   e.preventDefault();
 
   submitBtn.disabled = true;
@@ -35,7 +33,6 @@ form.addEventListener("submit", async(e) => {
 
   submitBtn.disabled = false;
   submitBtn.innerHTML = "Submit Report";
-
 });
 
 // ================== SUBMIT REPORT FUNCTION ==================
@@ -43,6 +40,10 @@ const submitReport = async () => {
   let titleValue = title.value;
   let categoryValue = category.value;
   let descriptionValue = description.value;
+
+  const {data: { user }, error: userError } = await supabaseClient.auth.getUser();
+
+  console.log(user);
 
   if (!titleValue || !categoryValue || !descriptionValue) {
     alert("Please fill all fields");
@@ -53,12 +54,13 @@ const submitReport = async () => {
     title: titleValue,
     category: categoryValue,
     description: descriptionValue,
+    reported_by: user.user_metadata.name,
   });
 
   if (error) {
     console.log("Error: ", error);
   } else {
-    form.reset()
-    window.location.href = "../homePage/home.html"
+    form.reset();
+    window.location.href = "../homePage/home.html";
   }
 };

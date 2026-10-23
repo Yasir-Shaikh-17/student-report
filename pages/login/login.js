@@ -37,9 +37,13 @@ const logoutUser = async () => {
     password: password,
   });
 
+  console.log(data)
+
   if (error) {
     console.log("Error: ", error);
-  } else {
+  }else if(data.user.user_metadata.role === "admin"){
+    window.location.href = "../homePage/home.html"
+  }else {
     window.location.href = "../reportPage/report.html"
   }
 };

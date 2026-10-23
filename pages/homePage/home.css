@@ -336,159 +336,140 @@ body {
 /* =========================
    TABLE CARD
 ========================= */
+
+.issues-table {
+  display: flex;
+  width: 100%;
+  min-width: 750px;
+}
+
+.table-column {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 0;
+}
+
+.title-column {
+  flex: 2.2;
+}
+
+.action-column {
+  flex: 0.8;
+}
+
+/* Shared cell styling */
+.table-column > div {
+  min-height: 65px;
+  padding: 16px 12px;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #eeeeF4;
+  box-sizing: border-box;
+}
+
+.table-column > .grid-header {
+  min-height: 48px;
+  font-weight: 600;
+  background: #f9faff;
+  border-bottom: 1px solid #eeeeF4;
+}
+
+/* Issue title */
+.table-column .issue-title {
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 5px;
+}
+
+.issue-description {
+  font-size: 12px;
+  color: #9999a8;
+}
+
+/* Hide the entire action column by default */
+.admin-only {
+  display: none;
+}
+
+/* Display it for admins */
+.admin-only.visible {
+  display: flex;
+}
+
+/* Horizontal scrolling on smaller screens */
 .table-wrapper {
   width: 100%;
   overflow-x: auto;
 }
 
-.issues-grid {
-  display: grid;
-  grid-template-columns:
-    minmax(230px, 1.7fr)
-    minmax(110px, 1fr)
-    minmax(120px, 1fr)
-    minmax(110px, 1fr)
-    minmax(100px, 0.8fr)
-    minmax(80px, 0.6fr);
-  min-width: 900px;
-}
+/* ==========
+    TABLE FOOTER
+   ==========
+*/
 
-.issues-grid > div {
-  padding: 18px 12px;
-  border-bottom: 1px solid #e5e7eb;
-  display: flex;
-  align-items: center;
-  font-size: 13px;
-  color: #171717;
-}
-
-.issues-grid .grid-header {
-  color: #9999a8;
-  font-size: 12px;
-  font-weight: 500;
-}
-
-.issues-grid .issue-title {
-  align-items: flex-start;
-  flex-direction: column;
-  gap: 5px;
-}
-
-.issue-description {
-  color: #64748b;
-  font-size: 12px;
-}
-
-.status {
-  padding: 5px 10px;
-  border-radius: 5px;
-  font-size: 12px;
-  font-weight: 600;
-}
-
-.status.pending {
-  color: #c47a00;
-  background: #fff4d6;
-  border: 1px solid #fbd38d;
-}
-
-.status.resolved {
-  color: #008f6b;
-  background: #d9fff0;
-  border: 1px solid #86efc5;
-}
-
-.view-btn {
-  background: white;
-  border: 1px solid #6542f5;
-  color: #6542f5;
-  padding: 6px 14px;
-  border-radius: 6px;
-  cursor: pointer;
-}
-
-.view-btn:hover {
-  background: #6542f5;
-  color: white;
-}
-
-/* =========================
-   STATUS BADGES
-========================= */
-.status {
-  display: inline-block;
-  padding: 5px 10px;
-  border-radius: 4px;
-  font-size: 11px;
-  font-weight: 600;
-}
-
-.status.pending {
-  color: #b87900;
-  background: #fff4d8;
-  border: 1px solid #f3d48a;
-}
-
-.status.resolved {
-  color: #07875c;
-  background: #d8fff0;
-  border: 1px solid #79d9b5;
-}
-
-/* =========================
-   ACTION BUTTON
-========================= */
-.view-btn {
-  padding: 6px 12px;
-  border: 1px solid #ded7ff;
-  border-radius: 5px;
-  background: white;
-  color: var(--primary);
-  font-size: 11px;
-  cursor: pointer;
-}
-
-.view-btn:hover {
-  background: var(--purple-bg);
-}
-
-/* =========================
-   TABLE FOOTER
-========================= */
 .table-footer {
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  gap: 15px;
-  padding-top: 18px;
-  border-top: 1px solid var(--border);
-  color: var(--text-secondary);
-  font-size: 11px;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 18px 20px;
+  border-top: 1px solid #eeeeF4;
+  background: #ffffff;
+  color: #9999a8;
+  font-size: 13px;
 }
 
 .pagination {
   display: flex;
-  gap: 6px;
+  align-items: center;
+  gap: 8px;
 }
 
 .pagination button {
-  padding: 7px 10px;
-  border: 1px solid var(--border);
-  border-radius: 5px;
-  background: white;
-  color: var(--text-primary);
-  font-size: 11px;
+  min-width: 36px;
+  height: 36px;
+  padding: 0 12px;
+  border: 1px solid #eeeeF4;
+  border-radius: 8px;
+  background: #ffffff;
+  color: #171717;
+  font: inherit;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease;
 }
 
-.pagination .page-active {
-  background: var(--primary);
-  border-color: var(--primary);
-  color: white;
+.pagination button:hover:not(:disabled):not(.page-active) {
+  background: #f9faff;
 }
 
 .pagination button:disabled {
   opacity: 0.45;
+  cursor: not-allowed;
 }
+
+.pagination button.page-active {
+  background: #5935ed;
+  border-color: #5935ed;
+  color: #ffffff;
+  font-weight: 600;
+  cursor: default;
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .table-footer {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 16px;
+  }
+
+  .pagination {
+    align-self: flex-end;
+  }
+}
+
 
 /* =========================
    RESPONSIVE

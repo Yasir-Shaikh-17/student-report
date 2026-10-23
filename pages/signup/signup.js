@@ -40,6 +40,7 @@ const createUser = async () => {
     options: {
       data: {
         name: name,
+        role: "student",
       },
     },
   });
@@ -47,6 +48,6 @@ const createUser = async () => {
   if (error) {
     console.log("Error: ", error);
   } else {
-    window.location.href = "../reportPage/report.html"
+    window.location.href = "../reportPage/report.html";
   }
 };

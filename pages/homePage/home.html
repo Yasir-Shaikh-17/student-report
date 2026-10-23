@@ -12,19 +12,10 @@
       <section class="main-content">
         <header class="topbar">
           <div>
-            <h1>Hello, Admin <span>👋</span></h1>
-            <p>Here's what's happening with your dashboard today.</p>
+            <h1 id="user-name"></h1>
           </div>
 
           <div class="user-profile">
-            <img
-              src="https://placehold.co/40x40"
-              alt="Profile picture"
-              id="profile-pic"
-            />
-
-            <span id="profile-name"></span>
-
             <button id="logout-btn">Logout</button>
           </div>
         </header>
@@ -32,7 +23,13 @@
         <!-- Summary Cards -->
         <section class="stats-grid">
           <article class="stat-card">
-            <div class="stat-icon green">♙</div>
+            <div class="stat-icon green">
+              <img
+                src="./assets/svgs/tasks.svg"
+                alt="tasks svg"
+                height="40px"
+              />
+            </div>
             <div class="stat-info">
               <p>Total Issues</p>
               <h2>5,423</h2>
@@ -40,7 +37,13 @@
           </article>
 
           <article class="stat-card">
-            <div class="stat-icon purple">▤</div>
+            <div class="stat-icon purple">
+              <img
+                src="./assets/svgs/pending.svg"
+                alt="pending svg"
+                height="40px"
+              />
+            </div>
             <div class="stat-info">
               <p>Pending Issues</p>
               <h2>1,893</h2>
@@ -48,7 +51,13 @@
           </article>
 
           <article class="stat-card">
-            <div class="stat-icon blue">✓</div>
+            <div class="stat-icon blue">
+              <img
+                src="./assets/svgs/completed.svg"
+                alt="completed svg"
+                height="40px"
+              />
+            </div>
             <div class="stat-info">
               <p>Resolved Issues</p>
               <h2>189</h2>
@@ -57,75 +66,97 @@
         </section>
 
         <!-- Table Section -->
+
         <section class="table-card">
           <div class="table-wrapper">
-            <div class="issues-grid">
-              <!-- Header -->
-              <div class="grid-header">Issue Title</div>
-              <div class="grid-header">Category</div>
-              <div class="grid-header">Reported By</div>
-              <div class="grid-header">Date</div>
-              <div class="grid-header">Status</div>
-              <div class="grid-header">Action</div>
+            <div class="issues-table">
+              <!-- Issue Title Column -->
+              <div class="table-column title-column">
+                <div class="grid-header">Issue Title</div>
 
-              <!-- Issue 1 -->
-              <div class="issue-title">
-                <strong>Broken classroom fan</strong>
-                <span class="issue-description"
-                  >Fan is not working properly</span
-                >
-              </div>
-              <div>Maintenance</div>
-              <div>Ali Ahmed</div>
-              <div>Oct 23, 2026</div>
-              <div><span class="status pending">Pending</span></div>
-              <div><button class="view-btn" type="button">View</button></div>
+                <div class="issue-title">
+                  <strong>Broken classroom fan</strong>
+                  <span class="issue-description"
+                    >Fan is not working properly</span
+                  >
+                </div>
 
-              <!-- Issue 2 -->
-              <div class="issue-title">
-                <strong>Dirty washroom</strong>
-                <span class="issue-description">Needs immediate cleaning</span>
-              </div>
-              <div>Cleanliness</div>
-              <div>Sarah Khan</div>
-              <div>Oct 22, 2026</div>
-              <div><span class="status resolved">Resolved</span></div>
-              <div><button class="view-btn" type="button">View</button></div>
+                <div class="issue-title">
+                  <strong>Dirty washroom</strong>
+                  <span class="issue-description"
+                    >Needs immediate cleaning</span
+                  >
+                </div>
 
-              <!-- Issue 3 -->
-              <div class="issue-title">
-                <strong>Projector not working</strong>
-                <span class="issue-description">Display is not turning on</span>
-              </div>
-              <div>Equipment</div>
-              <div>Usman Ali</div>
-              <div>Oct 21, 2026</div>
-              <div><span class="status pending">Pending</span></div>
-              <div><button class="view-btn" type="button">View</button></div>
+                <div class="issue-title">
+                  <strong>Projector not working</strong>
+                  <span class="issue-description"
+                    >Display is not turning on</span
+                  >
+                </div>
 
-              <!-- Issue 4 -->
-              <div class="issue-title">
-                <strong>Wi-Fi connection issue</strong>
-                <span class="issue-description"
-                  >Internet unavailable in lab</span
-                >
-              </div>
-              <div>Internet</div>
-              <div>Ahmed Raza</div>
-              <div>Oct 20, 2026</div>
-              <div><span class="status resolved">Resolved</span></div>
-              <div><button class="view-btn" type="button">View</button></div>
+                <div class="issue-title">
+                  <strong>Wi-Fi connection issue</strong>
+                  <span class="issue-description"
+                    >Internet unavailable in lab</span
+                  >
+                </div>
 
-              <!-- Issue 5 -->
-              <div class="issue-title">
-                <strong>Broken classroom chair</strong>
-                <span class="issue-description">One chair needs repair</span>
+                <div class="issue-title">
+                  <strong>Broken classroom chair</strong>
+                  <span class="issue-description">One chair needs repair</span>
+                </div>
               </div>
-              <div>Maintenance</div>
-              <div>Hassan Ali</div>
-              <div>Oct 19, 2026</div>
-              <div><span class="status pending">Pending</span></div>
-              <div><button class="view-btn" type="button">View</button></div>
+
+              <!-- Category Column -->
+              <div class="table-column">
+                <div class="grid-header">Category</div>
+                <div>Maintenance</div>
+                <div>Cleanliness</div>
+                <div>Equipment</div>
+                <div>Internet</div>
+                <div>Maintenance</div>
+              </div>
+
+              <!-- Reported By Column -->
+              <div class="table-column">
+                <div class="grid-header">Reported By</div>
+                <div>Ali Ahmed</div>
+                <div>Sarah Khan</div>
+                <div>Usman Ali</div>
+                <div>Ahmed Raza</div>
+                <div>Hassan Ali</div>
+              </div>
+
+              <!-- Date Column -->
+              <div class="table-column">
+                <div class="grid-header">Date</div>
+                <div>Oct 23, 2026</div>
+                <div>Oct 22, 2026</div>
+                <div>Oct 21, 2026</div>
+                <div>Oct 20, 2026</div>
+                <div>Oct 19, 2026</div>
+              </div>
+
+              <!-- Status Column -->
+              <div class="table-column">
+                <div class="grid-header">Status</div>
+                <div><span class="status pending">Pending</span></div>
+                <div><span class="status resolved">Resolved</span></div>
+                <div><span class="status pending">Pending</span></div>
+                <div><span class="status resolved">Resolved</span></div>
+                <div><span class="status pending">Pending</span></div>
+              </div>
+
+              <!-- Action Column: Admin only -->
+              <div class="table-column action-column admin-only">
+                <div class="grid-header">Action</div>
+                <div><button class="view-btn" type="button">View</button></div>
+                <div><button class="view-btn" type="button">View</button></div>
+                <div><button class="view-btn" type="button">View</button></div>
+                <div><button class="view-btn" type="button">View</button></div>
+                <div><button class="view-btn" type="button">View</button></div>
+              </div>
             </div>
           </div>
 
