@@ -11,13 +11,15 @@ let title = document.querySelector("#title");
 let category = document.querySelector("#category");
 let description = document.querySelector("#description");
 let submitBtn = document.querySelector(".submit-btn");
-let loading = false;
 
 // ================= CHECK IF THE USER IS LOGGEDIN OR NOT =================
 const checkUser = async () => {
   const { data } = await supabaseClient.auth.getUser();
-  if (!data.user) {
-    window.location.href = "../login/login.html";
+  if(!data.user){
+    window.location.href = "../login/login.html"
+  }else if(data.user.user_metadata.role === "admin"){
+      alert("Admin can not report")
+      window.location.href = "../homePage/home.html"
   }
 };
 checkUser();

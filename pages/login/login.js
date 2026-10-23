@@ -17,13 +17,13 @@ form.addEventListener("submit", async (e) => {
   createBtn.disabled = true;
   createBtn.innerHTML = "Creating Your Account...";
 
-  await logoutUser();
+  await loginUser();
 
   createBtn.disabled = false;
   createBtn.innerHTML = "Create Account";
 });
 
-const logoutUser = async () => {
+const loginUser = async () => {
   let email = emailInput.value;
   let password = passwordInput.value;
 

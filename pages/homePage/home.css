@@ -333,81 +333,202 @@ body {
   color: var(--red);
 }
 
+
 /* =========================
    TABLE CARD
 ========================= */
 
-.issues-table {
-  display: flex;
+.table-card {
   width: 100%;
-  min-width: 750px;
+  background: #ffffff;
+  border: 1px solid #eeeeF4;
+  border-radius: 12px;
+  overflow: hidden;
 }
 
-.table-column {
+.table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+}
+
+/* =========================
+   ISSUES TABLE
+========================= */
+
+.issues-table {
+  width: 100%;
+  min-width: 850px;
+}
+
+/* Each issue is one horizontal row */
+.issue-row {
   display: flex;
-  flex-direction: column;
-  flex: 1;
-  min-width: 0;
-}
-
-.title-column {
-  flex: 2.2;
-}
-
-.action-column {
-  flex: 0.8;
-}
-
-/* Shared cell styling */
-.table-column > div {
+  align-items: stretch;
+  width: 100%;
   min-height: 65px;
-  padding: 16px 12px;
+}
+
+/* Individual cells */
+.cell {
   display: flex;
   align-items: center;
-  border-bottom: 1px solid #eeeeF4;
+  flex: 1;
+  min-width: 0;
+  padding: 16px 12px;
   box-sizing: border-box;
-}
-
-.table-column > .grid-header {
-  min-height: 48px;
-  font-weight: 600;
-  background: #f9faff;
   border-bottom: 1px solid #eeeeF4;
+  color: #171717;
+  font-size: 13px;
+  overflow-wrap: anywhere;
 }
 
-/* Issue title */
-.table-column .issue-title {
+/* Column widths */
+.cell.title-column {
+  flex: 2.2;
+  min-width: 190px;
   flex-direction: column;
   align-items: flex-start;
   justify-content: center;
   gap: 5px;
 }
 
-.issue-description {
-  font-size: 12px;
-  color: #9999a8;
+.issue-row .cell.admin-only {
+  flex: 0.8;
+  min-width: 85px;
 }
 
-/* Hide the entire action column by default */
+/* =========================
+   TABLE HEADER
+========================= */
+
+.issue-header {
+  min-height: 48px;
+  background: #f9faff;
+}
+
+.issue-header .cell {
+  min-height: 48px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #666677;
+  border-bottom: 1px solid #eeeeF4;
+  white-space: nowrap;
+}
+
+.issue-header .title-column {
+  justify-content: center;
+}
+
+/* =========================
+   ISSUE TITLE & DESCRIPTION
+========================= */
+
+.cell strong {
+  font-size: 13px;
+  font-weight: 600;
+  color: #171717;
+}
+
+.issue-description {
+  display: block;
+  font-size: 12px;
+  line-height: 1.5;
+  color: #9999a8;
+  font-weight: 400;
+}
+
+/* =========================
+   STATUS BADGES
+========================= */
+
+.status {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 10px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.status.pending {
+  background: #fff4d6;
+  color: #946200;
+}
+
+.status.resolved {
+  background: #dcfce7;
+  color: #166534;
+}
+
+/* Optional status */
+.status.in-progress {
+  background: #dbeafe;
+  color: #1d4ed8;
+}
+
+/* =========================
+   ADMIN ACTION
+========================= */
+
+/* Hidden by default */
 .admin-only {
   display: none;
 }
 
-/* Display it for admins */
+/* Visible when the user is an admin */
 .admin-only.visible {
   display: flex;
 }
 
-/* Horizontal scrolling on smaller screens */
-.table-wrapper {
-  width: 100%;
-  overflow-x: auto;
+/* =========================
+   VIEW BUTTON
+========================= */
+.action-buttons {
+  gap: 8px;
+  flex-wrap: wrap;
 }
 
-/* ==========
-    TABLE FOOTER
-   ==========
-*/
+.resolve-btn,
+.delete-btn {
+  padding: 7px 10px;
+  border: none;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.resolve-btn {
+  background: #dcfce7;
+  color: #166534;
+}
+
+.delete-btn {
+  background: #fee2e2;
+  color: #b91c1c;
+}
+
+/* =========================
+   ROW HOVER
+========================= */
+
+#issues-container .issue-row {
+  transition: background 0.2s ease;
+}
+
+#issues-container .issue-row:hover {
+  background: #fafaff;
+}
+
+#issues-container .issue-row:last-child .cell {
+  border-bottom: none;
+}
+
+/* =========================
+   TABLE FOOTER
+========================= */
 
 .table-footer {
   display: flex;
@@ -420,6 +541,74 @@ body {
   color: #9999a8;
   font-size: 13px;
 }
+
+.pagination {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.pagination button {
+  padding: 7px 11px;
+  border: 1px solid #eeeeF4;
+  border-radius: 6px;
+  background: #ffffff;
+  color: #555566;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.pagination button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.pagination .page-active {
+  background: #5935ed;
+  color: #ffffff;
+  border-color: #5935ed;
+}
+
+
+.total-card, .pending-card, .resolved-card{
+  cursor: pointer;
+}
+
+/* =========================
+   RESPONSIVE DESIGN
+========================= */
+
+@media (max-width: 768px) {
+  .table-card {
+    border-radius: 10px;
+  }
+
+  /* Preserve column alignment and scroll horizontally */
+  .issues-table {
+    min-width: 850px;
+  }
+
+  .cell {
+    padding: 14px 10px;
+  }
+
+  .table-footer {
+    padding: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .table-footer {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .pagination {
+    align-self: flex-end;
+  }
+}
+
 
 .pagination {
   display: flex;
